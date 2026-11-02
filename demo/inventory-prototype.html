@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Inventory Listing Assistant · FICTIONAL DEMO</title>
+<style>
+:root{--ink:#14213d;--mut:#5b6476;--bg:#f5f7fb;--card:#fff;--acc:#0a7cff;--ok:#12a150;--warn:#d97706;--demo:#c81e1e;--r:16px}
+*{box-sizing:border-box}html,body{margin:0}
+body{font:15px/1.45 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;color:var(--ink);background:var(--bg);padding-bottom:96px}
+.demo{background:var(--demo);color:#fff;text-align:center;font-weight:800;font-size:12px;letter-spacing:.08em;padding:6px 8px}
+header{position:sticky;top:0;z-index:5;background:#fff;box-shadow:0 1px 0 #e6e9f0}
+.hd{padding:10px 16px 4px}.note{margin:0 16px 8px;font-size:11.5px;line-height:1.35;color:#5b21b6;background:#f5f0ff;border-radius:8px;padding:6px 8px}.hd small{color:var(--mut);display:block;font-size:12px}.hd b{font-size:16px}
+.steps{display:flex;gap:6px;padding:0 12px 10px}
+.steps button{flex:1;border:0;border-radius:12px;padding:8px 4px;background:#eef1f6;color:var(--mut);font:600 12px/1.2 inherit;font-family:inherit}
+.steps button.on{background:var(--ink);color:#fff}
+.steps button span{display:block;font-size:16px}
+main{padding:12px}
+h2{font-size:18px;margin:6px 4px 4px}.lead{color:var(--mut);margin:0 4px 12px;font-size:14px}
+.card{background:var(--card);border-radius:var(--r);box-shadow:0 1px 3px #0000000f,0 4px 14px #0000000a;padding:12px;margin-bottom:12px}
+.row{display:flex;gap:12px;align-items:flex-start}
+.ph{width:84px;height:84px;border-radius:12px;flex:none;background:#eef1f5}
+.raw{font:13px/1.4 ui-monospace,Menlo,Consolas,monospace;background:#fff8e6;border:1px dashed #e7c46a;border-radius:10px;padding:8px;color:#5a4400}
+.meta{font-size:12px;color:var(--mut);margin-top:6px}
+.btn{display:block;width:100%;border:0;border-radius:14px;padding:14px;font:700 16px inherit;font-family:inherit;background:var(--acc);color:#fff}
+.btn.sec{background:#e8eefc;color:var(--acc)}
+.ai{display:inline-block;font-size:11px;font-weight:700;color:#5b21b6;background:#efe7ff;border-radius:999px;padding:3px 8px;margin-bottom:6px}
+.arrow{text-align:center;color:var(--mut);font-size:12px;margin:8px 0}
+.t{font-weight:700;font-size:16px;line-height:1.3;margin:0 0 4px}
+.chips{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0}.chip{font-size:12px;background:#eef1f6;border-radius:999px;padding:3px 9px}
+.g{font-size:12px;font-weight:700;border-radius:8px;padding:2px 8px;background:#e6f6ec;color:#0b7a3b}
+.cat{font-size:12px;color:var(--mut)}
+.d{font-size:14px;color:#2b3445;margin:6px 0}
+.price{display:flex;justify-content:space-between;align-items:center;background:#fff4e5;border-radius:10px;padding:8px 10px;font-size:13px}
+.price b{font-size:18px}
+.flag{background:#fdecec;color:#9b1c1c;border-radius:10px;padding:8px 10px;font-size:13px;font-weight:600;margin-top:8px}
+.rv textarea,.rv input[type=number]{resize:none;width:100%;font:inherit;border:1px solid #d5dbe6;border-radius:10px;padding:8px;margin-top:4px}
+.rv label{font-size:12px;color:var(--mut);display:block;margin-top:8px}
+.tg{display:flex;align-items:center;justify-content:space-between;margin-top:10px;padding-top:10px;border-top:1px solid #eef1f6;font-weight:600}
+.sw{position:relative;width:52px;height:30px;flex:none}.sw input{opacity:0;width:0;height:0}
+.sl{position:absolute;inset:0;background:#cfd6e2;border-radius:999px;transition:.2s}
+.sl:before{content:"";position:absolute;width:24px;height:24px;left:3px;top:3px;background:#fff;border-radius:50%;transition:.2s;box-shadow:0 1px 3px #0003}
+.sw input:checked+.sl{background:var(--ok)}.sw input:checked+.sl:before{transform:translateX(22px)}
+.sw input:disabled+.sl{opacity:.45}
+.bar{position:fixed;left:0;right:0;bottom:0;background:#fff;box-shadow:0 -2px 12px #0000001a;padding:10px 12px calc(10px + env(safe-area-inset-bottom));display:flex;gap:10px;align-items:center;z-index:6}
+.bar .n{font-size:13px;color:var(--mut);flex:1}.bar .n b{color:var(--ink);font-size:16px;display:block}
+.bar .btn{width:auto;padding:12px 18px}
+.spin{display:none;text-align:center;padding:40px 0;color:var(--mut)}
+.spin i{display:inline-block;width:34px;height:34px;border:4px solid #dbe3f2;border-top-color:var(--acc);border-radius:50%;animation:r 0.8s linear infinite}
+@keyframes r{to{transform:rotate(360deg)}}
+.hide{display:none!important}
+footer{font-size:11px;color:var(--mut);padding:4px 16px 16px;text-align:center}
+.toast{position:fixed;left:50%;bottom:90px;transform:translateX(-50%);background:var(--ink);color:#fff;padding:10px 14px;border-radius:12px;font-size:13px;opacity:0;transition:.3s;z-index:9}
+.toast.on{opacity:1}
+@media(min-width:700px){main{max-width:640px;margin:0 auto}}
+</style></head><body>
+<header>
+ <div class="demo">FICTIONAL DEMO · invented shop, items &amp; prices</div>
+ <div class="hd"><small>Inventory Listing Assistant</small><b>Harbor Lane Resale (FICTIONAL DEMO)</b></div>
+ <p class="note">This prototype shows pre-written example listings. No AI model runs here. A live AI version is PROPOSED, not built; in it, staff would still review every listing.</p>
+ <nav class="steps">
+  <button data-s="1"><span>📷</span>1 · Intake</button>
+  <button data-s="2"><span>✨</span>2 · Listings</button>
+  <button data-s="3"><span>✅</span>3 · Review &amp; Export</button>
+ </nav>
+</header>
+<main>
+ <section id="s1">
+  <h2>Staff intake</h2><p class="lead">What staff typically enter at intake: a photo and quick notes.</p>
+  <div id="intake"></div>
+  <button class="btn" id="gen">✨ Show example listings</button>
+ </section>
+ <section id="s2" class="hide">
+  <div class="spin" id="spin"><i></i><p>Loading example listings…</p></div>
+  <div id="after"><h2>Before → After</h2><p class="lead">Every listing is a draft. Staff check facts and confirm prices.</p><div id="ba"></div>
+  <button class="btn" data-go="3">Review &amp; approve →</button></div>
+ </section>
+ <section id="s3" class="hide">
+  <h2>Review &amp; approve</h2><p class="lead">Edit anything, approve what's ready, then export a CSV for WooCommerce (Shopify: same fields, mapped on import).</p>
+  <div id="rv"></div>
+ </section>
+</main>
+<footer>FICTIONAL DEMO. The shop, items, notes and prices are invented. Photos are placeholders. No data leaves this page.</footer>
+<div class="bar hide" id="bar"><div class="n"><b id="cnt">0 approved</b>of <span id="tot"></span> items</div><button class="btn" id="exp">⬇ Export CSV</button></div>
+<div class="toast" id="toast"></div>
+<script>
+const D=[{"sku": "HLR-DEMO-001", "raw": "14k gold cuban chain 22in ~18g clasp ok light wear", "intake": 520, "title": "14K Yellow Gold Cuban Link Chain, 22 in, approx. 18 g", "category": "Jewelry > Necklaces & Chains", "grade": "B (Good)", "desc": "Classic 14K yellow gold Cuban link chain, 22 inches long, approximately 18 grams. Secure box clasp in working order. Light surface wear consistent with normal use; no kinks or broken links observed at intake. Weight and karat to be re-verified by staff before sale.", "tags": ["14k gold", "cuban link", "gold chain", "men's jewelry", "22 inch"], "img": "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNjAgMjYwIiByb2xlPSJpbWciIGFyaWEtbGFiZWw9InBsYWNlaG9sZGVyIHBob3RvIj48cmVjdCB3aWR0aD0iMjYwIiBoZWlnaHQ9IjI2MCIgcng9IjE4IiBmaWxsPSIjZWVmMWY1Ii8+PGcgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjZDRhMDE3IiBzdHJva2Utd2lkdGg9IjkiPjxlbGxpcHNlIGN4PSI2MCIgY3k9IjEyMCIgcng9IjIwIiByeT0iMTMiIHRyYW5zZm9ybT0icm90YXRlKDI1IDYwIDEyMCkiLz48ZWxsaXBzZSBjeD0iODgiIGN5PSIxMjYiIHJ4PSIyMCIgcnk9IjEzIiB0cmFuc2Zvcm09InJvdGF0ZSgtMjUgODggMTI2KSIvPjxlbGxpcHNlIGN4PSIxMTYiIGN5PSIxMjAiIHJ4PSIyMCIgcnk9IjEzIiB0cmFuc2Zvcm09InJvdGF0ZSgyNSAxMTYgMTIwKSIvPjxlbGxpcHNlIGN4PSIxNDQiIGN5PSIxMjYiIHJ4PSIyMCIgcnk9IjEzIiB0cmFuc2Zvcm09InJvdGF0ZSgtMjUgMTQ0IDEyNikiLz48ZWxsaXBzZSBjeD0iMTcyIiBjeT0iMTIwIiByeD0iMjAiIHJ5PSIxMyIgdHJhbnNmb3JtPSJyb3RhdGUoMjUgMTcyIDEyMCkiLz48ZWxsaXBzZSBjeD0iMjAwIiBjeT0iMTI2IiByeD0iMjAiIHJ5PSIxMyIgdHJhbnNmb3JtPSJyb3RhdGUoLTI1IDIwMCAxMjYpIi8+PC9nPjxyZWN0IHg9IjAiIHk9IjIyOCIgd2lkdGg9IjI2MCIgaGVpZ2h0PSIzMiIgZmlsbD0iIzAwMDAwMDg4Ii8+PHRleHQgeD0iMTMwIiB5PSIyNTAiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxNSIgZmlsbD0iI2ZmZiIgdGV4dC1hbmNob3I9Im1pZGRsZSI+UExBQ0VIT0xERVIgUEhPVE8gwrcgREVNTzwvdGV4dD48L3N2Zz4=", "suggested": 755, "flag": "", "markup": 1.45}, {"sku": "HLR-DEMO-002", "raw": "20v cordless drill 2 batt good cond charger + bag", "intake": 75, "title": "20V Cordless Drill/Driver Kit, 2 Batteries, Charger & Bag", "category": "Tools > Power Tools > Drills", "grade": "B (Good)", "desc": "20V cordless drill/driver kit with two batteries, charger and carry bag. Tested at intake: powers on, chuck and clutch working. Normal cosmetic wear on housing. Battery health to be confirmed by staff.", "tags": ["cordless drill", "20v", "power tools", "drill kit", "drill driver"], "img": "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNjAgMjYwIiByb2xlPSJpbWciIGFyaWEtbGFiZWw9InBsYWNlaG9sZGVyIHBob3RvIj48cmVjdCB3aWR0aD0iMjYwIiBoZWlnaHQ9IjI2MCIgcng9IjE4IiBmaWxsPSIjZWVmMWY1Ii8+PHJlY3QgeD0iNTUiIHk9IjgwIiB3aWR0aD0iMTIwIiBoZWlnaHQ9IjQ4IiByeD0iMTQiIGZpbGw9IiNmMmI3MDUiLz48cmVjdCB4PSIxNzUiIHk9Ijk0IiB3aWR0aD0iNDAiIGhlaWdodD0iMjAiIHJ4PSI0IiBmaWxsPSIjNTU1Ii8+PHJlY3QgeD0iMjE1IiB5PSIxMDAiIHdpZHRoPSIyMiIgaGVpZ2h0PSI4IiBmaWxsPSIjOTk5Ii8+PHJlY3QgeD0iODUiIHk9IjEyNSIgd2lkdGg9IjM4IiBoZWlnaHQ9IjcwIiByeD0iOCIgZmlsbD0iIzMzMyIvPjxyZWN0IHg9IjcyIiB5PSIxOTAiIHdpZHRoPSI2NiIgaGVpZ2h0PSIyNiIgcng9IjYiIGZpbGw9IiNmMmI3MDUiLz48cmVjdCB4PSIwIiB5PSIyMjgiIHdpZHRoPSIyNjAiIGhlaWdodD0iMzIiIGZpbGw9IiMwMDAwMDA4OCIvPjx0ZXh0IHg9IjEzMCIgeT0iMjUwIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMTUiIGZpbGw9IiNmZmYiIHRleHQtYW5jaG9yPSJtaWRkbGUiPlBMQUNFSE9MREVSIFBIT1RPIMK3IERFTU88L3RleHQ+PC9zdmc+", "suggested": 120, "flag": "", "markup": 1.6}, {"sku": "HLR-DEMO-003", "raw": "acoustic gtr dreadnought natural few scratches no case", "intake": 90, "title": "Dreadnought Acoustic Guitar, Natural Finish", "category": "Musical Instruments > Guitars > Acoustic", "grade": "B (Good)", "desc": "Dreadnought acoustic guitar in natural finish. Plays and holds tune; a few minor cosmetic scratches on the body. Case not included. Strings may be replaced before sale at staff discretion.", "tags": ["acoustic guitar", "dreadnought", "natural finish", "beginner guitar", "6-string"], "img": "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNjAgMjYwIiByb2xlPSJpbWciIGFyaWEtbGFiZWw9InBsYWNlaG9sZGVyIHBob3RvIj48cmVjdCB3aWR0aD0iMjYwIiBoZWlnaHQ9IjI2MCIgcng9IjE4IiBmaWxsPSIjZWVmMWY1Ii8+PGNpcmNsZSBjeD0iMTEwIiBjeT0iMTYwIiByPSI0OCIgZmlsbD0iI2M0N2EzYSIvPjxjaXJjbGUgY3g9IjE0NSIgY3k9IjExOCIgcj0iMzQiIGZpbGw9IiNjNDdhM2EiLz48Y2lyY2xlIGN4PSIxMjUiIGN5PSIxNDUiIHI9IjEyIiBmaWxsPSIjM2IyNDEyIi8+PHJlY3QgeD0iMTUwIiB5PSI0MCIgd2lkdGg9IjE0IiBoZWlnaHQ9IjgwIiBmaWxsPSIjNWEzYTFhIiB0cmFuc2Zvcm09InJvdGF0ZSgzNSAxNTcgODApIi8+PHJlY3QgeD0iMTc4IiB5PSIyMiIgd2lkdGg9IjIyIiBoZWlnaHQ9IjI4IiByeD0iNCIgZmlsbD0iIzNiMjQxMiIgdHJhbnNmb3JtPSJyb3RhdGUoMzUgMTg5IDM2KSIvPjxyZWN0IHg9IjAiIHk9IjIyOCIgd2lkdGg9IjI2MCIgaGVpZ2h0PSIzMiIgZmlsbD0iIzAwMDAwMDg4Ii8+PHRleHQgeD0iMTMwIiB5PSIyNTAiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxNSIgZmlsbD0iI2ZmZiIgdGV4dC1hbmNob3I9Im1pZGRsZSI+UExBQ0VIT0xERVIgUEhPVE8gwrcgREVNTzwvdGV4dD48L3N2Zz4=", "suggested": 150, "flag": "", "markup": 1.65}, {"sku": "HLR-DEMO-004", "raw": "game console disc ver 1 ctrl works hdmi+pwr cord tiny scuff", "intake": 210, "title": "Game Console (Disc Version) with Controller & Cables", "category": "Electronics > Video Game Consoles", "grade": "A- (Very Good)", "desc": "Disc-version game console with one wireless controller, HDMI and power cables. Tested at intake: powers on, reads discs, controller pairs. One tiny scuff on the side panel. Factory reset to be confirmed by staff before sale.", "tags": ["game console", "disc version", "video games", "console", "gaming"], "img": "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNjAgMjYwIiByb2xlPSJpbWciIGFyaWEtbGFiZWw9InBsYWNlaG9sZGVyIHBob3RvIj48cmVjdCB3aWR0aD0iMjYwIiBoZWlnaHQ9IjI2MCIgcng9IjE4IiBmaWxsPSIjZWVmMWY1Ii8+PHJlY3QgeD0iOTUiIHk9IjQwIiB3aWR0aD0iNzAiIGhlaWdodD0iMTcwIiByeD0iMzAiIGZpbGw9IiNmNGY0ZjQiIHN0cm9rZT0iI2RkZCIgc3Ryb2tlLXdpZHRoPSIzIi8+PHJlY3QgeD0iMTE4IiB5PSI0NSIgd2lkdGg9IjI0IiBoZWlnaHQ9IjE2MCIgcng9IjgiIGZpbGw9IiMxMTEiLz48cGF0aCBkPSJNMTc1IDE3NSBxMjAgLTI1IDQ1IDAgcTggMTggLTYgMjIgcS0xMCAwIC0xNiAtMTAgaC0yIHEtNiAxMCAtMTYgMTAgcS0xNCAtNCAtNSAtMjJ6IiBmaWxsPSIjMmI1OWMzIi8+PHJlY3QgeD0iMCIgeT0iMjI4IiB3aWR0aD0iMjYwIiBoZWlnaHQ9IjMyIiBmaWxsPSIjMDAwMDAwODgiLz48dGV4dCB4PSIxMzAiIHk9IjI1MCIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjE1IiBmaWxsPSIjZmZmIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj5QTEFDRUhPTERFUiBQSE9UTyDCtyBERU1PPC90ZXh0Pjwvc3ZnPg==", "suggested": 305, "flag": "", "markup": 1.45}, {"sku": "HLR-DEMO-005", "raw": "brown monogram canvas tote, designer?? needs auth, corners worn", "intake": 0, "title": "Brown Monogram Canvas Tote Bag (Authentication Pending)", "category": "Handbags & Accessories > Totes", "grade": "C (Fair)", "desc": "Brown monogram-pattern canvas tote with leather trim. Visible wear on corners and handles. Brand authenticity has NOT been verified: this listing must not name a designer brand until authentication is completed.", "tags": ["tote bag", "monogram", "canvas tote", "handbag", "pre-owned"], "img": "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNjAgMjYwIiByb2xlPSJpbWciIGFyaWEtbGFiZWw9InBsYWNlaG9sZGVyIHBob3RvIj48cmVjdCB3aWR0aD0iMjYwIiBoZWlnaHQ9IjI2MCIgcng9IjE4IiBmaWxsPSIjZWVmMWY1Ii8+PHBhdGggZD0iTTcwIDExMCBoMTIwIGwxMiAxMDAgaC0xNDR6IiBmaWxsPSIjN2E0YjJhIi8+PHBhdGggZD0iTTEwMCAxMTAgcTMwIC02MCA2MCAwIiBmaWxsPSJub25lIiBzdHJva2U9IiMzYjI0MTIiIHN0cm9rZS13aWR0aD0iOSIvPjxnIGZpbGw9IiNjOWE2NmIiIG9wYWNpdHk9Ii41NSI+PGNpcmNsZSBjeD0iODgiIGN5PSIxMzUiIHI9IjUiLz48Y2lyY2xlIGN4PSIxMTYiIGN5PSIxMzUiIHI9IjUiLz48Y2lyY2xlIGN4PSIxNDQiIGN5PSIxMzUiIHI9IjUiLz48Y2lyY2xlIGN4PSIxNzIiIGN5PSIxMzUiIHI9IjUiLz48Y2lyY2xlIGN4PSI4OCIgY3k9IjE2MCIgcj0iNSIvPjxjaXJjbGUgY3g9IjExNiIgY3k9IjE2MCIgcj0iNSIvPjxjaXJjbGUgY3g9IjE0NCIgY3k9IjE2MCIgcj0iNSIvPjxjaXJjbGUgY3g9IjE3MiIgY3k9IjE2MCIgcj0iNSIvPjxjaXJjbGUgY3g9Ijg4IiBjeT0iMTg1IiByPSI1Ii8+PGNpcmNsZSBjeD0iMTE2IiBjeT0iMTg1IiByPSI1Ii8+PGNpcmNsZSBjeD0iMTQ0IiBjeT0iMTg1IiByPSI1Ii8+PGNpcmNsZSBjeD0iMTcyIiBjeT0iMTg1IiByPSI1Ii8+PC9nPjxyZWN0IHg9IjAiIHk9IjIyOCIgd2lkdGg9IjI2MCIgaGVpZ2h0PSIzMiIgZmlsbD0iIzAwMDAwMDg4Ii8+PHRleHQgeD0iMTMwIiB5PSIyNTAiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxNSIgZmlsbD0iI2ZmZiIgdGV4dC1hbmNob3I9Im1pZGRsZSI+UExBQ0VIT0xERVIgUEhPVE8gwrcgREVNTzwvdGV4dD48L3N2Zz4=", "suggested": null, "flag": "Authentication required before listing. Brand name withheld; price left for staff.", "markup": 0}];
+const $=q=>document.querySelector(q), esc=s=>String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const st=D.map(d=>({approved:!d.flag,title:d.title,price:d.suggested??""}));
+function money(v){return v===""||v==null?"—":"$"+Number(v).toLocaleString("en-US")}
+$("#intake").innerHTML=D.map(d=>`<div class="card"><div class="row"><img class="ph" src="${d.img}" alt=""><div style="flex:1"><div class="raw">${esc(d.raw)}</div><div class="meta">${d.sku} · intake ${d.intake?money(d.intake):"not set"}</div></div></div></div>`).join("");
+function renderBA(){ $("#ba").innerHTML=D.map((d,i)=>`<div class="card"><div class="row"><img class="ph" style="width:56px;height:56px" src="${d.img}" alt=""><div class="raw" style="flex:1">${esc(d.raw)}</div></div>
+<div class="arrow">▼ becomes</div><span class="ai">Example output (pre-written for demo)</span>
+<p class="t">${esc(st[i].title)}</p><div><span class="g">${esc(d.grade)}</span> <span class="cat">${esc(d.category)}</span></div>
+<p class="d">${esc(d.desc)}</p><div class="chips">${d.tags.map(t=>`<span class="chip">#${esc(t)}</span>`).join("")}</div>
+<div class="price"><span>Suggested price<br><small>Fictional example price, staff must verify<br>${d.markup?Math.round((d.markup-1)*100)+"% over intake · ⚠ staff review":"⚠ left blank for staff"}</small></span><b>${money(d.suggested)}</b></div>
+${d.flag?`<div class="flag">⚠ ${esc(d.flag)}</div>`:""}</div>`).join("")}
+function renderRV(){ $("#rv").innerHTML=D.map((d,i)=>`<div class="card rv"><div class="row"><img class="ph" style="width:56px;height:56px" src="${d.img}" alt=""><div style="flex:1"><span class="ai">Example output (pre-written for demo)</span><div class="cat">${d.sku} · ${esc(d.grade)}</div></div></div>
+<label>Title</label><textarea rows="2" data-i="${i}" data-f="title">${esc(st[i].title)}</textarea>
+<label>Price (USD): fictional example price, staff must verify · ⚠ staff review</label><input type="number" inputmode="decimal" data-i="${i}" data-f="price" value="${st[i].price}" placeholder="enter price">
+${d.flag?`<div class="flag">⚠ ${esc(d.flag)}</div>`:""}
+<div class="tg"><span>Approve for export</span><label class="sw"><input type="checkbox" data-i="${i}" ${st[i].approved?"checked":""} ${st[i].price===""?"disabled":""}><span class="sl"></span></label></div></div>`).join("");
+ count()}
+function count(){const n=st.filter(s=>s.approved).length;$("#cnt").textContent=n+" approved";$("#tot").textContent=D.length}
+document.addEventListener("input",e=>{const t=e.target,i=t.dataset.i;if(i==null)return;
+ if(t.type==="checkbox"){st[i].approved=t.checked}else{st[i][t.dataset.f]=t.value;
+  if(t.dataset.f==="price"){const cb=document.querySelector(`input[type=checkbox][data-i="${i}"]`);cb.disabled=t.value==="";if(t.value===""){cb.checked=false;st[i].approved=false}}}
+ count()});
+function show(n){[1,2,3].forEach(k=>$("#s"+k).classList.toggle("hide",k!=n));document.querySelectorAll(".steps button").forEach(b=>b.classList.toggle("on",b.dataset.s==n));
+ $("#bar").classList.toggle("hide",n!=3);if(n==2)renderBA();if(n==3)renderRV();window.scrollTo(0,0);history.replaceState(null,"","#step"+n)}
+document.querySelectorAll(".steps button").forEach(b=>b.onclick=()=>show(+b.dataset.s));
+document.querySelectorAll("[data-go]").forEach(b=>b.onclick=()=>show(+b.dataset.go));
+$("#gen").onclick=()=>{show(2);$("#after").classList.add("hide");$("#spin").style.display="block";setTimeout(()=>{$("#spin").style.display="none";$("#after").classList.remove("hide")},1200)};
+function toast(m){const t=$("#toast");t.textContent=m;t.classList.add("on");setTimeout(()=>t.classList.remove("on"),2200)}
+const H=["Type","SKU","Name","Published","Short description","Description","Categories","Tags","Regular price","In stock?","Meta: condition_grade","Meta: staff_review","Meta: price_note","Meta: demo_notice"];
+const q=v=>{v=String(v??"");return /[",\n]/.test(v)?'"'+v.replace(/"/g,'""')+'"':v};
+$("#exp").onclick=()=>{const rows=D.map((d,i)=>[d,st[i]]).filter(([d,s])=>s.approved);
+ if(!rows.length){toast("Approve at least one item first");return}
+ const csv=[H.join(",")].concat(rows.map(([d,s])=>["simple",d.sku,s.title,-1,"Condition: "+d.grade,d.desc,d.category,d.tags.join(", "),Number(s.price).toFixed(2),1,d.grade,"Approved in review; staff must verify price","Fictional example price, staff must verify","FICTIONAL DEMO data, pre-written example listing"].map(q).join(","))).join("\n");
+ const a=document.createElement("a");a.href=URL.createObjectURL(new Blob(["\ufeff"+csv],{type:"text/csv"}));a.download="harbor-lane-FICTIONAL-DEMO-listings.csv";document.body.appendChild(a);a.click();a.remove();
+ toast("Exported "+rows.length+" draft listings (CSV)")};
+show(({"#step2":2,"#step3":3})[location.hash]||1);
+</script></body></html>

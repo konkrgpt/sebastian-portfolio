@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="Case study: a mobile prototype for a fictional resale shop that turns intake notes into staff-reviewed example listings and CSV export. Pre-written output; AI generation proposed, not built.">
+<meta name="robots" content="index,follow">
+<title>Inventory Intake & Listing Assistant | Sebastian Rivera</title>
+<script>document.documentElement.className+=' js';</script>
+<link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<div class="ambient" aria-hidden="true"></div>
+<header class="site-header">
+<div class="nav wrap">
+<a class="wordmark" href="../index.html" aria-label="Sebastian Rivera, home">SR<span>.</span></a>
+<button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-nav"><span class="bars" aria-hidden="true"></span>Menu</button>
+<nav id="site-nav" class="site-nav" aria-label="Main navigation">
+<ul>
+<li><a href="../index.html">Overview</a></li>
+<li><a href="../work/multi-agent-research-system.html">Research System</a></li>
+<li><a href="../work/automotive-operations-automation.html">Automotive Ops</a></li>
+<li><a href="../work/inventory-listing-assistant.html" aria-current="page">Inventory Assistant</a></li>
+<li><a href="../index.html#about">About</a></li>
+<li><a class="nav-contact" href="mailto:Srivera.Automations@gmail.com">Contact ↗</a></li>
+</ul>
+</nav>
+</div>
+</header>
+<main id="main">
+<div class="wrap">
+<p class="crumbs"><a href="../index.html#work">Case studies</a> / 03</p>
+<section class="case-hero">
+<p class="kicker">Case study 03 · Demonstration prototype</p>
+<h1>Inventory Intake &amp; Listing Assistant</h1>
+<p class="lead">A single-file, mobile-friendly prototype showing how a resale shop's rough intake notes could become clean, staff-reviewed product listings and a WooCommerce-style CSV export.</p>
+<div class="status-line"><span class="badge b-proto">Prototype</span> <span class="badge b-prop">Proposed</span></div>
+<div class="notice critical"><strong>Fictional demo.</strong> Invented shop, items and prices. Listings are pre-written example output; no AI model runs in this prototype. Live AI generation is proposed, not built.</div>
+<p style="margin-top:22px"><a class="button ghost" href="../demo/inventory-prototype.html">Open the prototype (fictional demo) ↗</a></p>
+</section>
+</div>
+<div class="wrap case">
+<aside class="toc" aria-label="On this page"><p>ON THIS PAGE</p><ul>
+<li><a href="#problem">Problem</a></li><li><a href="#flow">The flow</a></li><li><a href="#screens">Screens</a></li><li><a href="#features">Feature status</a></li><li><a href="#proposed">Proposed live version</a></li></ul></aside>
+<div class="case-body">
+<section id="problem"><h2>The problem</h2>
+<p>Resale staff write rough notes at intake. Turning those into consistent titles, categories, condition grades, descriptions and tags takes time, and some items (for example, branded goods) must never be listed before a person has authenticated them. The prototype explores a flow where staff stay in control of every listing.</p>
+</section>
+<section id="flow"><h2>The flow</h2>
+<ol>
+<li><strong>Intake:</strong> fictional items with rough staff notes.</li>
+<li><strong>Listings:</strong> a "Show example listings" button reveals pre-written example listings after a short animation. Nothing is generated.</li>
+<li><strong>Review &amp; export:</strong> staff edit titles and prices, approve or skip items, and export approved items to CSV in the browser. Nothing is uploaded.</li>
+</ol>
+<p>One item, a monogram tote, is intentionally flagged "authentication required": its brand is withheld and it has no price, so it cannot be exported until approved. Each suggested price is a fixed markup over an invented intake cost, rounded to $5, and labeled "Fictional example price, staff must verify". The markup is not a pricing method.</p>
+</section>
+<section id="screens"><h2>Screens</h2>
+<p>Captured from a local headless-browser render at a 390×844 phone viewport. That render logged no external requests and no errors.</p>
+<div class="shots">
+<figure><img src="../assets/img/inventory-01-intake.png" width="780" height="1688" loading="lazy" alt="Prototype intake screen of the fictional Harbor Lane Resale demo, listing fictional items with rough staff notes and a red FICTIONAL DEMO banner."><figcaption><strong>Intake screen.</strong> Prototype intake screen with fictional items and notes.</figcaption></figure>
+<figure><img src="../assets/img/inventory-02-generating.png" width="780" height="1688" loading="lazy" alt="Loading spinner screen from the prototype. It is a simulated delay; no generation happens."><figcaption><strong>Simulated delay.</strong> <strong>Simulated delay; no generation happens.</strong></figcaption></figure>
+<figure><img src="../assets/img/inventory-03-before-after.png" width="780" height="1688" loading="lazy" alt="Before and after view: a rough note about a gold chain shown above a pre-written example listing labeled Example output, pre-written for demo, with a fictional example price."><figcaption><strong>Before → after.</strong> Pre-written example output (not AI-generated). Fictional example prices.</figcaption></figure>
+<figure><img src="../assets/img/inventory-04-flagged-item.png" width="780" height="1688" loading="lazy" alt="Pre-written example listing for a tote bag flagged authentication required, with the brand withheld and no price."><figcaption><strong>Flagged item.</strong> Pre-written example output: an item flagged for staff authentication.</figcaption></figure>
+<figure><img src="../assets/img/inventory-05-review.png" width="780" height="1688" loading="lazy" alt="Staff review screen with editable titles and fictional example prices and approve or skip toggles."><figcaption><strong>Staff review.</strong> Staff review screen (prototype). Fictional example prices.</figcaption></figure>
+<figure><img src="../assets/img/inventory-06-exported.png" width="780" height="1688" loading="lazy" alt="Export confirmation screen showing a client-side CSV export of the approved example items."><figcaption><strong>CSV export.</strong> Client-side CSV export of approved example items (prototype).</figcaption></figure>
+</div>
+</section>
+<section id="features"><h2>Feature status</h2>
+<div class="scroll-x"><table>
+<thead><tr><th>Feature</th><th>Status</th><th>Notes</th></tr></thead>
+<tbody>
+<tr><td>Mobile intake → listings → review → export UI</td><td><span class="badge b-proto">Prototype</span></td><td>Single self-contained HTML file; works offline.</td></tr>
+<tr><td>Listing content (title, category, grade, description, tags)</td><td><span class="badge b-proto">Prototype</span></td><td>Pre-written example output, typed by hand. Not AI-generated.</td></tr>
+<tr><td>"Generating" step</td><td><span class="badge b-proto">Prototype</span></td><td>Simulated delay; no generation happens.</td></tr>
+<tr><td>Editing, approve/skip, client-side CSV export</td><td><span class="badge b-proto">Prototype</span></td><td>Works in the browser; nothing is uploaded.</td></tr>
+<tr><td>Authentication-required flag</td><td><span class="badge b-proto">Prototype</span></td><td>Pre-written for one fictional item.</td></tr>
+<tr><td>AI listing generation (vision + text, structured output)</td><td><span class="badge b-prop">Proposed</span></td><td>Not built.</td></tr>
+<tr><td>Workflow runner (e.g. n8n or a small Python service)</td><td><span class="badge b-prop">Proposed</span></td><td>Not built.</td></tr>
+<tr><td>Pricing from shop rules or sold comparables</td><td><span class="badge b-prop">Proposed</span></td><td>Not built; staff would set or approve every price.</td></tr>
+<tr><td>Publishing to WooCommerce or Shopify</td><td><span class="badge b-prop">Proposed</span></td><td>Not built; only after human approval.</td></tr>
+</tbody></table></div>
+</section>
+<section id="proposed"><h2>What a live version would need</h2>
+<p><span class="badge b-prop">Proposed</span> None of the following exists in the prototype:</p>
+<ul>
+<li>An AI model call per item turning photos and notes into a draft listing, with structured output and checks that refuse to name a brand until authentication is confirmed.</li>
+<li>A workflow runner taking photos and notes from a form, shared folder or spreadsheet.</li>
+<li>Pricing inputs from the shop's own rules or sold-item comparisons, with staff setting or approving every price.</li>
+<li>A human approval step before anything is published, then export or push through the store's import CSV or API.</li>
+<li>Rules that exclude items still under any required hold period and keep customer and ID data out of listings.</li>
+<li>The shop's own AI-service account, logging, error alerts and cost limits.</li>
+</ul>
+<p><strong>Data provenance:</strong> the shop, SKUs, notes, costs and prices are invented. Product images are original placeholder drawings stamped as placeholders. No real shop, customer, employer or person appears.</p>
+</section>
+<nav class="next" aria-label="Case study navigation"><a href="automotive-operations-automation.html">← Automotive Ops</a><a href="../index.html#about">About &amp; contact →</a></nav>
+</div>
+</div>
+</main>
+<footer class="wrap">
+<span>© <span id="year">2026</span> Sebastian Rivera</span>
+<span>AI Automation &amp; Agent Systems · No trackers, no cookies</span>
+<a href="mailto:Srivera.Automations@gmail.com">Srivera.Automations@gmail.com ↗</a>
+</footer>
+<script src="../script.js"></script>
+</body>
+</html>
