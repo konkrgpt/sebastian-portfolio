@@ -30,3 +30,15 @@
   document.addEventListener('visibilitychange',schedule);
   controls.hidden=false;show(0,false);schedule();
 })();
+
+(function(){
+  var button=document.querySelector('[data-copy-email]');
+  var status=document.querySelector('[data-contact-status]');
+  if(!button||!status){return;}
+  button.addEventListener('click',function(){
+    if(!navigator.clipboard){status.textContent='Select the email address above and copy it.';return;}
+    navigator.clipboard.writeText('Srivera.Automations@gmail.com').then(function(){
+      status.textContent='Email address copied.';
+    }).catch(function(){status.textContent='Select the email address above and copy it.';});
+  });
+})();

@@ -3,11 +3,11 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="description" content="Case study: a coordinator-led multi-agent research automation system with a hash-frozen evaluation harness, an honest negative result, and an HTTP 451 data-source failover.">
+<meta name="description" content="A multi-agent research system for data collection, coordinated analysis, repeatable testing and human-reviewed reporting.">
 <meta name="robots" content="index,follow">
 <title>Multi-Agent Research & Automation System | Sebastian Rivera</title>
 <script>document.documentElement.className+=' js';</script>
-<link rel="stylesheet" href="../styles.css?v=20261102-business">
+<link rel="stylesheet" href="../styles.css?v=20261102-presentation">
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
@@ -24,138 +24,49 @@
 <li><a href="../work/ai-content-marketing-automation.html">Marketing Automation</a></li>
 <li><a href="../work/multi-agent-research-system.html" aria-current="page">Market Research</a></li>
 <li><a href="../index.html#about">About</a></li>
-<li><a class="nav-contact" href="mailto:Srivera.Automations@gmail.com">Contact ↗</a></li>
+<li><a class="nav-contact" href="../index.html#contact">Contact</a></li>
 </ul>
 </nav>
 </div>
 </header>
-<main id="main">
-<div class="wrap">
+<main id="main"><div class="wrap">
 <p class="crumbs"><a href="../index.html#work">Case studies</a> / 03</p>
-<section class="case-hero">
-<p class="kicker">Case study 03 · Independent project · Oct 2026–present</p>
-<h1>Multi-Agent Research &amp; Automation System</h1>
-<p class="lead">A multi-agent system for researching market data and testing trading ideas in paper simulation. Specialist agents collect and analyze data, an evaluation harness checks the results, and a person reviews material changes. This case study demonstrates research and verification work; it does not demonstrate profitable trading or automated order execution.</p>
-<div class="status-line"><span class="badge b-impl">Implemented</span> <span class="badge b-dry">Dry run</span> <span class="badge b-self">Team size (8+) self-reported</span></div>
-<div class="notice"><strong>Scope.</strong> Paper simulation only. No real orders, funds or exchange accounts were used. The evaluation harness rejected both candidate strategies. No profit is claimed. All agent roles are generic labels. Sources are internal logs, available on request.</div>
-</section>
-</div>
-<div class="wrap case">
-<aside class="toc" aria-label="On this page"><p>ON THIS PAGE</p><ul>
-<li><a href="#problem">Problem</a></li><li><a href="#architecture">Architecture</a></li><li><a href="#delegation">Delegation &amp; escalation</a></li><li><a href="#features">Built &amp; tested</a></li><li><a href="#evaluation">What the tests found</a></li><li><a href="#failover">HTTP 451 failover</a></li><li><a href="#limits">Limits</a></li></ul></aside>
+<section class="case-hero"><p class="kicker">Case study 03 · Independent project</p><h1>Multi-Agent Research &amp; Automation System</h1>
+<p class="lead">A coordinated system of AI agents that collects information, investigates ideas, checks findings and prepares reports. I designed the workflow around specialist roles, repeatable testing and human review, so research can move forward with a clear record of how each conclusion was reached.</p></section></div>
+<div class="wrap case"><aside class="toc" aria-label="On this page"><p>ON THIS PAGE</p><ul><li><a href="#problem">The goal</a></li><li><a href="#architecture">How it fits together</a></li><li><a href="#delegation">Delegation &amp; review</a></li><li><a href="#features">What I built</a></li><li><a href="#evaluation">Testing ideas</a></li><li><a href="#failover">Solving a data interruption</a></li></ul></aside>
 <div class="case-body">
-<section id="problem"><h2>The problem</h2>
-<p>Research on public data is easy to fool yourself with. Backtests drift, code changes mid-experiment, data sources fail silently, and a promising result can be an artifact of costs that were never modeled. The goal was a system where several AI agents can do the legwork, while the rules of the experiment stay fixed, auditable and checked by an independent lane before anyone trusts a conclusion.</p>
-<p>The domain happens to be public market data, but the work is research automation: data collection, scanning, charting, statistical evaluation and reporting.</p>
-</section>
-
-<section id="architecture"><h2>How the system fits together</h2><p>This overview shows how agents, data tools and reporting connect. The next section explains who checks the work and when a person must approve a change.</p>
-<figure class="diagram"><img src="../assets/workflows/research-architecture.svg" width="1600" height="1000" loading="lazy" alt="Architecture diagram with four layers. Agent layer: a coordinator agent connected to a human operator and to research, verification, monitoring and local coding agents. Data layer: a public REST API and an official public mirror feed a fetcher with local cache that fails fast on HTTP 403 or 451; public historical archives feed the backtest. Pipelines: multi-timeframe scanners, chart generation, an opportunity radar with outcome ledger, a backtest study, a prospective forward paper log and a log-only news and risk overlay. Outputs: daily status reports with checksummed archives, a chat-platform notification publisher marked dry-run only, and an inbound relay receiver for cross-machine reports.">
-<figcaption><strong>Generic architecture.</strong> All agent roles are generic. The size of the agent team (8+) is self-reported. The chat notification publisher is built and tested but has only been run as a dry run. Hostnames, endpoints, credentials, machine names and paths are omitted on purpose.</figcaption></figure>
-<ul>
-<li><strong>Data layer.</strong> A Python fetcher on a public, credential-free REST API and its official public mirror, plus checksum-verified public historical archives. It fails fast on HTTP 403/451 instead of retrying silently.</li>
-<li><strong>Pipelines.</strong> Multi-timeframe scanners (5m–4h) with chart generation and annotation, an opportunity radar with an outcome ledger, a backtest study with development / holdout / replication splits, and a prospective forward paper log.</li>
-<li><strong>Outputs.</strong> Daily status reports and checksummed export archives. Each run is invoked explicitly; no cron job, scheduler or daemon is installed.</li>
-</ul>
-</section>
-
-<section id="delegation"><h2>Delegation, verification and escalation</h2>
-<figure class="diagram"><img src="../assets/workflows/research-delegation.svg" width="1600" height="850" loading="lazy" alt="Delegation flow: a human operator gives goals and constraints to a coordinator agent. The coordinator sends a study spec to a research agent and the same spec to an independent second research lane, watch tasks to monitoring agents, and build tasks to local coding agents on separate machines, which report over authenticated HTTPS to an inbound relay receiver. All of these feed a verification agent, which returns pass or fail with evidence to the coordinator. Changes, freezes and anything outbound go back to the human operator.">
-<figcaption><strong>Delegation flow (generic roles).</strong> A second research lane gets the same spec but independent data and code; the verification agent assigns pass/fail with evidence. The team size (8+, including local coding agents on two personal machines) is self-reported.</figcaption></figure>
-<div class="scroll-x"><table>
-<thead><tr><th>Level</th><th>Who decides</th><th>Examples</th></tr></thead>
-<tbody>
-<tr><td>L0 · Autonomous, read-only</td><td>Specialist agent</td><td>Public-data fetches, scans, backtests, reports. The evaluation code is limited to public endpoints, with no credentials and no accounts.</td></tr>
-<tr><td>L1 · Peer cross-check</td><td>Verification agent or second lane</td><td>Independent re-implementation; re-fetching data to check a relayed report (one relayed scan report: 6 of 6 checks passed).</td></tr>
-<tr><td>L2 · Human approval</td><td>Operator</td><td>Rule or accounting changes after a freeze, export-path changes, enabling any outbound posting. Freeze entries record the approval.</td></tr>
-<tr><td>L3 · Hard stop</td><td>No one</td><td>Real orders, credentials or account access in the evaluation path. Out of scope by design.</td></tr>
-</tbody></table></div>
-</section>
-
-<section id="features"><h2>What was built and tested</h2><p>This table separates working components from unfinished integrations. <strong>Implemented</strong> means the component was built and exercised; it does not mean a production deployment. <strong>Dry run</strong> means it was tested without sending live notifications. <strong>Not built</strong> means that capability is still absent.</p>
-<div class="scroll-x"><table>
-<thead><tr><th>Feature</th><th>Status</th><th>Notes</th></tr></thead>
-<tbody>
-<tr><td>Coordinator-led delegation, generic agent roles</td><td><span class="badge b-impl">Implemented</span></td><td>Team size of 8+ is self-reported. A sanitized handoff transcript is not yet published.</td></tr>
-<tr><td>Escalation levels L0–L3</td><td><span class="badge b-impl">Implemented</span></td><td>Approvals recorded in the append-only freeze history.</td></tr>
-<tr><td>Public-API data layer with fail-fast errors and mirror failover</td><td><span class="badge b-impl">Implemented</span></td><td>See the HTTP 451 case study below.</td></tr>
-<tr><td>Multi-timeframe scanners, charts, radar and outcome ledger</td><td><span class="badge b-impl">Implemented</span></td><td>Research outputs only; nothing is executed.</td></tr>
-<tr><td>Evaluation harness (hash-frozen rules, pre-registered pass bar, cost model, reproduction tests)</td><td><span class="badge b-impl">Implemented</span></td><td>Paper simulation only.</td></tr>
-<tr><td>News / risk overlay</td><td><span class="badge b-impl">Implemented</span></td><td>Runs as a log-only shadow with a frozen spec and a built-in self-test; it never changes the frozen rules.</td></tr>
-<tr><td>Cross-machine relay (local coding agents → inbound HTTPS receiver)</td><td><span class="badge b-impl">Implemented</span></td><td>Verified on 2 deliveries; not a production integration.</td></tr>
-<tr><td>Chat notification publisher</td><td><span class="badge b-dry">Dry run</span></td><td>Built and tested (24 unittest cases, network blocked during tests). It has only been run as a dry run and has never posted live.</td></tr>
-<tr><td>Scheduled / unattended runs</td><td>Not built</td><td>Runs are invoked explicitly. No scheduler or daemon is installed.</td></tr>
-</tbody></table></div>
-</section>
-
-<section id="evaluation"><h2>Testing the ideas before trusting them</h2><div class="outcome-box"><small>WHAT THE RESULT MEANS</small><p>The software reproduced the reference results. The two strategy ideas did not meet the criteria for use.</p></div><p>These are different questions: <strong>does the evaluation code reproduce the expected calculations?</strong> and <strong>does a proposed strategy show enough evidence to use?</strong> The reproduction checks matched. Neither strategy earned a pass in paper testing.</p><h3>How the evaluation was designed</h3>
-<p>The harness was built so that a result could not be quietly improved after the fact:</p>
-<ul>
-<li><strong>Rules frozen by SHA-256</strong> before the forward start. Every later change goes into an append-only freeze history (5 versions) with old and new hashes, a reason, the scope of the change and re-run tests.</li>
-<li><strong>Pre-registered pass bar:</strong> at least 50 closed outcomes, positive net result, and the lower bound of a 90% day-block bootstrap above zero.</li>
-<li><strong>Prospective, append-only log.</strong> State at time t depends only on events up to t. A torn trailing line is reported, never rewritten.</li>
-<li><strong>Conservative cost and fill model:</strong> fees on every side, depth-based slippage, worst-case ordering within a minute, fills only on trade-through, and a fixed simulated capital cap with invariants asserted after every ledger operation.</li>
-<li><strong>Verification by reproduction:</strong> the forward engine reproduces the reference holdout results exactly, 103/103 for Candidate A and 22/22 for Candidate B, re-run after every re-freeze.</li>
-<li><strong>Independent replication across lanes:</strong> two independently built datasets gave nearly identical summary statistics.</li>
-</ul>
-<div class="stat-row">
-<div class="stat"><strong>Reference results matched</strong><span>103/103 results for Candidate A and 22/22 for Candidate B were reproduced exactly.</span></div>
-<div class="stat"><strong>Neither strategy qualified</strong><span>0 of 2 candidate strategies met the pass criteria. This is a research outcome, not a count of failed software tests.</span></div>
-<div class="stat"><strong>22 runs · 145 events</strong><span>Logged between 2026-10-22 and 2026-10-30</span></div>
-</div>
-<p><strong>Result.</strong> As of the last run on 2026-10-30, both candidates were <strong>NOT PASSED</strong>. Candidate A had looked positive in its holdout backtest, but its replication window was already about flat and the forward test turned negative. Sample sizes were still below the pre-registered 50, but both intervals were entirely below zero. The harness caught out-of-sample decay before any real money could be involved, which is what it was built to do.</p>
-<p><em>The evaluation harness rejected both candidate strategies. No profit is claimed.</em></p>
-<h3>Process self-correction</h3>
-<p>Bugs were caught and documented before results were computed: a wrong future freeze timestamp was corrected before any return computation, and a UTC-versus-local weekday bug was fixed and re-run.</p>
-</section>
-
-<section id="failover"><h2>Case study: HTTP 451 data-source failover</h2>
-<p class="fine" style="margin-top:0"><em>Timeline from the system's own change log.</em> <span class="badge b-impl">Implemented</span></p>
-<h3>Situation</h3>
-<p>A prospective forward log had been frozen and started at 2026-10-22 16:00 UTC. Under its integrity rules, any code change after the start must be logged, re-hashed and justified.</p>
-<h3>Symptom</h3>
-<p>The primary public REST host, and its numbered alias, began returning <strong>HTTP 451</strong> ("unavailable for legal reasons") from the cloud host running the pipeline. The last clean run was at 15:56 UTC and the fix was frozen at 16:47 UTC.</p>
-<h3>Diagnosis</h3>
-<ul>
-<li>HTTP 451 is a jurisdiction block, not a rate limit or a code bug, so retrying would never succeed.</li>
-<li>The old fetch code retried with sleeps, so a block would have appeared as a hang or silent data gaps rather than a clear failure.</li>
-<li>The vendor documentation, snapshotted in the repository, listed an official public mirror serving the same endpoints.</li>
-</ul>
-<h3>Fix</h3>
-<ol>
-<li>Switched the single API constant to the official mirror, the only endpoint in the pinned code path.</li>
-<li>Added a <code>FetchBlocked</code> exception: on HTTP 403/451 the run aborts without touching the journal or status file, and prints a clear error.</li>
-<li><strong>Proved the mirror identical before trusting it</strong>, comparing all 12 fields per row as byte-identical JSON: 384/384 seeded rows, 2700/2700 one-minute rows across 75 symbols, 2175/2175 daily rows.</li>
-<li>Re-ran the reproduction tests (103/103 and 22/22) and confirmed the test file hash was unchanged.</li>
-<li>Re-froze as v3, classified "DATA-SOURCE-ONLY", recording old and new hashes. No run had happened in between, so no data was lost.</li>
-<li>The first run on the mirror (16:52 UTC) back-filled from the forward start without problems.</li>
-</ol>
-<h3>Follow-on issue caught in the same session</h3>
-<p>That first run produced a 108 MB export archive that the backup mirror rejected (OSError 22). The archive was moved, and the export path was changed with operator approval and logged as a separate "EXPORT-PATH-ONLY" re-freeze (v4).</p>
-<h3>Takeaways</h3>
-<ul><li>Fail fast and loudly on non-retryable HTTP codes.</li><li>Prove a replacement data source is identical before using it.</li><li>Keep every mid-experiment change classified, hashed and auditable so the experiment stays valid.</li></ul>
-</section>
-
-<section id="limits"><h2>Limits and missing evidence</h2>
-<ul>
-<li>Paper simulation only; no orders, funds, accounts or credentials anywhere in the evaluation path.</li>
-<li>The agent team size (8+) is self-reported, not independently verified.</li>
-<li>The cross-machine relay has 2 accepted deliveries; it is not a production integration.</li>
-<li>The notification publisher has never posted live.</li>
-<li>Unit-test and self-test counts are cited from the code; a captured test-run log is not yet published. A sanitized coordinator-handoff excerpt is also not yet published.</li>
-<li>Sources are internal logs, available on request. Raw logs are not published.</li>
-</ul>
-<p><strong>Stack:</strong> Python (stdlib urllib/json, requests), unittest, SHA-256 pinning, JSONL ledgers, Mermaid/Markdown reporting, multiple LLM agents coordinated with explicit handoffs and human approval gates.</p>
-</section>
-<nav class="next" aria-label="Case study navigation"><a href="ai-content-marketing-automation.html">← Marketing Automation</a><a href="../index.html#about">About &amp; contact →</a></nav>
-</div>
-</div>
-</main>
+<section id="problem"><h2>Turning research into a repeatable workflow</h2><p>Research involves gathering information, exploring possibilities, comparing results and deciding what deserves attention. I built a system that assigns those steps to focused agents while keeping the work organized and reviewable.</p><p>The project was developed around public market-data analysis and simulation. Its core work is data collection, coordinated research, verification, charts and reporting.</p><h3>My role</h3><p>I designed the agent roles and handoffs, directed AI-assisted Python development, reviewed integrations, and investigated data and testing issues.</p></section>
+<section id="architecture"><h2>How the system fits together</h2><p>A coordinator breaks the research task into focused pieces. Data tools gather the inputs, specialist agents analyze them, and verification checks support the final report.</p><figure class="diagram"><img src="../assets/workflows/research-architecture.svg" width="1600" height="1000" loading="lazy" alt="Research system architecture: a coordinator delegates to specialist agents, data tools collect and verify information, analysis tools test ideas, and reports return for review.">
+<figcaption><strong>Architecture overview.</strong> Agent coordination, data collection, analysis and reporting work together, with human review at key decisions.</figcaption></figure><ul><li><strong>Collect:</strong> gather public data and organize it for analysis.</li><li><strong>Investigate:</strong> run scans, build charts and compare candidate ideas.</li><li><strong>Review:</strong> check calculations and return findings with supporting records.</li></ul></section>
+<section id="delegation"><h2>Delegation, verification and human review</h2><figure class="diagram"><img src="../assets/workflows/research-delegation.svg" width="1600" height="850" loading="lazy" alt="Delegation flow: a human operator gives goals and constraints to a coordinator agent. The coordinator sends a study spec to a research agent and the same spec to an independent second research lane, watch tasks to monitoring agents, and build tasks to local coding agents on separate machines, which report over authenticated HTTPS to an inbound relay receiver. All of these feed a verification agent, which returns pass or fail with evidence to the coordinator. Changes, freezes and anything outbound go back to the human operator.">
+<figcaption><strong>Delegation flow.</strong> Specialist agents handle focused tasks. A separate verification step checks the findings before the coordinator brings them back for review.</figcaption></figure><div class="scroll-x"><table><thead><tr><th>Step</th><th>Who handles it</th><th>What happens</th></tr></thead><tbody>
+<tr><td>Set the direction</td><td>Human operator and coordinator</td><td>Define the question, inputs and criteria for a useful result.</td></tr>
+<tr><td>Investigate</td><td>Research and coding agents</td><td>Collect information, implement analysis and return focused findings.</td></tr>
+<tr><td>Cross-check</td><td>Verification agent or independent research lane</td><td>Compare calculations and data before accepting a conclusion.</td></tr>
+<tr><td>Review changes</td><td>Human operator</td><td>Approve material changes and decide the next step.</td></tr>
+</tbody></table></div></section>
+<section id="features"><h2>What I built and tested</h2><div class="scroll-x"><table><thead><tr><th>Component</th><th>What it does</th></tr></thead><tbody>
+<tr><td>Agent coordination</td><td>Assigns focused research, coding, monitoring and verification tasks, with clear handoffs.</td></tr>
+<tr><td>Data collection and backup sources</td><td>Fetches public information, keeps local copies and checks source availability.</td></tr>
+<tr><td>Scanning and charting tools</td><td>Examines data across timeframes and prepares charts for review.</td></tr>
+<tr><td>Repeatable evaluation</td><td>Tests ideas against predefined criteria and checks calculations against reference results.</td></tr>
+<tr><td>Research records and reports</td><td>Tracks observations, changes and outcomes so the reasoning can be followed.</td></tr>
+<tr><td>Cross-machine reporting</td><td>Receives reports from coding agents working on separate machines.</td></tr>
+</tbody></table></div></section>
+<section id="evaluation"><h2>Testing the ideas before trusting them</h2><div class="outcome-box"><small>CHECK THE METHOD, THEN THE IDEA</small><p>The system checks that calculations are repeatable before evaluating whether an idea meets the research criteria.</p></div><ul>
+<li><strong>Set the criteria first.</strong> Define what a useful result would look like before running the study.</li>
+<li><strong>Check the calculations.</strong> Reproduce known reference results to confirm the method behaves as expected.</li>
+<li><strong>Test on fresh data.</strong> Compare ideas beyond the data used to develop them.</li>
+<li><strong>Keep a clear record.</strong> Document changes and rerun checks as the work develops.</li></ul>
+<p>In the market-data simulation, the evaluation reproduced 103 reference results for one candidate and 22 for another. It also screened out two ideas that did not meet the preset criteria. That made the output useful for deciding which ideas deserved further work.</p></section>
+<section id="failover"><h2>Keeping research moving when a data source failed</h2><p>During one study, the main data provider became unavailable from the research environment. Repeated retries were delaying the workflow.</p><ol><li><strong>Found the cause:</strong> identified that the provider was blocking access from that environment.</li><li><strong>Used the official backup:</strong> switched to another source provided by the same vendor.</li><li><strong>Verified the result:</strong> compared the backup data with the reference records and reran the calculation checks.</li></ol><p>The research continued using the verified backup. The change was recorded so the study remained consistent and traceable.</p></section>
+<nav class="next" aria-label="Case study navigation"><a href="ai-content-marketing-automation.html">← Marketing Automation</a><a href="../index.html#contact">Let's talk about your project →</a></nav>
+</div></div></main>
 <footer class="wrap">
 <span>© <span id="year">2026</span> Sebastian Rivera</span>
 <span>AI Automation &amp; Agent Systems · No trackers, no cookies</span>
 <a href="mailto:Srivera.Automations@gmail.com">Srivera.Automations@gmail.com ↗</a>
 </footer>
-<script src="../script.js?v=20261102-business"></script>
+<script src="../script.js?v=20261102-presentation"></script>
 </body>
 </html>

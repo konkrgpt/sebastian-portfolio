@@ -3,11 +3,11 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="description" content="AI content and marketing workflow design, archived packaging and supervised publishing records, and a planned TikTok Shop expansion.">
+<meta name="description" content="Agent-assisted content preparation, asset packaging, human review, a dashboard prototype and supervised Instagram API publishing.">
 <meta name="robots" content="index,follow">
 <title>AI Content &amp; Marketing Automation | Sebastian Rivera</title>
 <script>document.documentElement.className+=' js';</script>
-<link rel="stylesheet" href="../styles.css?v=20261102-business">
+<link rel="stylesheet" href="../styles.css?v=20261102-presentation">
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
@@ -24,42 +24,36 @@
 <li><a href="../work/ai-content-marketing-automation.html" aria-current="page">Marketing Automation</a></li>
 <li><a href="../work/multi-agent-research-system.html">Market Research</a></li>
 <li><a href="../index.html#about">About</a></li>
-<li><a class="nav-contact" href="mailto:Srivera.Automations@gmail.com">Contact ↗</a></li>
+<li><a class="nav-contact" href="../index.html#contact">Contact</a></li>
 </ul>
 </nav>
 </div>
 </header>
-<main id="main"><div class="wrap">
-<p class="crumbs"><a href="../index.html#work">Case studies</a> / 02</p>
-<section class="case-hero"><p class="kicker">Case study 02 · Independent project</p>
-<h1>AI Content &amp; Marketing Automation</h1>
-<p class="lead">A workflow for planning social content, preparing assets and captions, collecting human approval, and publishing approved posts. The work combines agent tooling, a dashboard prototype, content-packaging code, and supervised publishing experiments.</p>
-<div class="status-line"><span class="badge b-record">Archived records reviewed</span><span class="badge b-proto">Dashboard prototype</span><span class="badge b-prop">TikTok Shop planned</span></div>
-<div class="notice"><strong>What this page establishes.</strong> Archived project records document asset packaging and a supervised Instagram API publishing experiment. The dashboard and the publishing backend are separate components. The original backend was not re-run during this portfolio audit; current integration health and unattended operation are not verified.</div>
-</section></div><div class="wrap case"><aside class="toc" aria-label="On this page"><p>ON THIS PAGE</p><ul><li><a href="#plain">In plain English</a></li><li><a href="#workflow">Workflow</a></li><li><a href="#built">What the evidence shows</a></li><li><a href="#tools">Tools and roles</a></li><li><a href="#expansion">TikTok Shop direction</a></li><li><a href="#limits">Audit limits</a></li></ul></aside>
-<div class="case-body"><section id="plain"><h2>In plain English</h2><p>Social content takes more than generating a picture. Files and captions need to be packaged, checked, approved, and sent to the right account. This project explored tools for managing those steps while keeping a person in control of publication.</p><h3>My role</h3><p>Workflow definition, agent coordination, AI-assisted implementation, review, troubleshooting, and decisions about which content could be published. This page describes content operations and publishing experiments; it does not claim campaign revenue or sales results.</p></section>
-<section id="workflow"><h2>From content preparation to publication</h2><figure class="diagram"><img src="../assets/workflows/content-marketing-workflow.svg" width="1800" height="760" loading="lazy" alt="Content workflow overview: agent-assisted planning, packaged assets and captions, human review, and supervised publishing. TikTok Shop product marketing is a separate planned expansion."><figcaption><strong>Component overview.</strong> This illustration explains the workflow. It is not a production dashboard screenshot or proof of a fully autonomous end-to-end pipeline.</figcaption></figure></section>
-<section id="built"><h2>What the evidence shows</h2><div class="scroll-x"><table><thead><tr><th>Component</th><th>Evidence reviewed</th><th>What it does not establish</th></tr></thead><tbody>
-<tr><td>Content packaging</td><td>Archived implementation records describe single-image and carousel packages containing ordered images, captions and an export manifest, written to a staging area.</td><td>The export step did not publish content. Original code and tests were not re-run in this audit.</td></tr>
-<tr><td>Human-approved publishing</td><td>A September 2026 publisher record documents a supervised Instagram API publish and verification. The example was later withdrawn after quality review.</td><td>A currently live post, uninterrupted operation, or unattended campaign publishing.</td></tr>
-<tr><td>Command-center dashboard</td><td>The project handoff describes a clickable prototype with navigation, in-memory state and per-part Claude threads in its design environment.</td><td>A fully connected production dashboard. Most metrics and action buttons used mock data; state did not persist.</td></tr>
-<tr><td>Marketing and e-commerce outcomes</td><td>Content-production and publishing work, plus a planned product-marketing direction.</td><td>Measured conversion uplift, revenue, ROAS, or a deployed TikTok Shop integration.</td></tr>
+<main id="main"><div class="wrap"><p class="crumbs"><a href="../index.html#work">Case studies</a> / 02</p>
+<section class="case-hero"><p class="kicker">Case study 02 · Independent project</p><h1>AI Content &amp; Marketing Automation</h1><p class="lead">An agent-assisted workflow for organizing social content, preparing images and captions, and reviewing posts before publication. The project combines content-packaging tools, a clickable dashboard prototype and supervised publishing through the Instagram API.</p></section></div>
+<div class="wrap case"><aside class="toc" aria-label="On this page"><p>ON THIS PAGE</p><ul><li><a href="#plain">The goal</a></li><li><a href="#workflow">The workflow</a></li><li><a href="#built">What I built</a></li><li><a href="#tools">Tools I worked with</a></li></ul></aside><div class="case-body">
+<section id="plain"><h2>Making content operations easier to manage</h2><p>Producing a post involves more than creating an image. Assets need to stay organized, captions need to match, and someone needs to review the package before it goes out. I worked on connecting those steps into a clearer workflow.</p><h3>My role</h3><p>I defined the workflow, coordinated agent-assisted implementation, reviewed content, and handled troubleshooting and publishing decisions.</p></section>
+<section id="workflow"><h2>From preparation to publication</h2><figure class="diagram"><img src="../assets/workflows/content-marketing-workflow.svg" width="1800" height="760" loading="lazy" alt="Content workflow overview: agent-assisted planning, packaged assets and captions, human review, and supervised publishing."><figcaption><strong>The workflow.</strong> Plan the content, prepare the assets, review the package and publish with human approval.</figcaption></figure></section>
+<section id="built"><h2>What I built</h2><div class="scroll-x"><table><thead><tr><th>Component</th><th>What it does</th></tr></thead><tbody>
+<tr><td>Content packaging</td><td>Organizes single-image and carousel posts with ordered assets, matching captions and a record of the export.</td></tr>
+<tr><td>Review workflow</td><td>Keeps content checks and approval in the process before publication.</td></tr>
+<tr><td>Supervised publishing</td><td>Used the Instagram API to publish an approved post and verify the result during a supervised test.</td></tr>
+<tr><td>Dashboard prototype</td><td>A clickable interface for exploring content operations and workflow navigation using sample data.</td></tr>
+</tbody></table></div><p>The packaging tools, publishing work and dashboard prototype were developed as separate components of the content workflow.</p></section>
+<section id="tools"><h2>Tools I worked with</h2><div class="scroll-x"><table><thead><tr><th>Tool</th><th>How I used it</th></tr></thead><tbody>
+<tr><td>Hermes</td><td>Agent tooling and workflow coordination.</td></tr>
+<tr><td>OpenClaw</td><td>Earlier hands-on agent-tooling work.</td></tr>
+<tr><td>Higgsfield and creative APIs</td><td>Creative tooling for the content-production workflow.</td></tr>
+<tr><td>Instagram API</td><td>Human-approved publishing and checking the published result.</td></tr>
+<tr><td>Python</td><td>Asset packaging, ordered exports and record keeping.</td></tr>
 </tbody></table></div></section>
-<section id="tools"><h2>Tools and their roles</h2><p>Tool experience and a completed integration are different claims. The roles below separate the project records from hands-on experience reported by Sebastian.</p><div class="scroll-x"><table><thead><tr><th>Tool</th><th>Role</th><th>Status</th></tr></thead><tbody>
-<tr><td>Hermes</td><td>Agent runtime and workflow coordination context; dashboard design around its operations.</td><td>Documented project context and self-reported hands-on use. Direct dashboard-to-runtime control was not established by the reviewed prototype.</td></tr>
-<tr><td>OpenClaw</td><td>Earlier agent-tooling experience.</td><td>Self-reported hands-on use. Not presented as the publisher implementation verified in this audit.</td></tr>
-<tr><td>Higgsfield and creative API tooling</td><td>Image-generation tooling referenced in the content-workflow records.</td><td>Documented tooling; a complete live generation-to-publish flow was not re-tested here.</td></tr>
-<tr><td>Instagram API</td><td>Supervised publishing of approved content.</td><td>Archived publish/verification record reviewed; example later withdrawn. No new publishing performed for this audit.</td></tr>
-<tr><td>Python and manifests</td><td>Asset packaging, ordered exports and record keeping.</td><td>Archived implementation and test records reviewed.</td></tr>
-</tbody></table></div></section>
-<section id="expansion"><h2>Planned expansion: TikTok Shop marketing</h2><p>The intended pivot was to adapt this content workflow to product-focused marketing and e-commerce campaigns. Product briefs, creative assets, captions and human review would support content made around products.</p><p><span class="badge b-prop">Planned</span> TikTok Shop API integration, product-catalog connections, campaign publishing and conversion measurement are not claimed as implemented. They would require platform integration work and validation.</p></section>
-<section id="limits"><h2>Audit limits and next evidence</h2><p>This page is based on a July 2026 project handoff, archived export implementation/test records, and a September 2026 publisher record. Those records support historical development and a supervised experiment, not present-day operational status.</p><p>The next audit step is to inspect the original repository and manifests, run tests without live publishing or generation spend, and compare implementation against the archived records. Private account names, endpoints, creator content and credentials are omitted.</p></section>
-</div></div><div class="wrap"><nav class="next" aria-label="Case study navigation"><a href="automotive-operations-automation.html">← Claims Automation</a><a href="multi-agent-research-system.html">Next: Market Research →</a></nav></div></main>
+<nav class="next" aria-label="Case study navigation"><a href="automotive-operations-automation.html">← Claims Automation</a><a href="multi-agent-research-system.html">Next: Market Research →</a></nav>
+</div></div></main>
 <footer class="wrap">
 <span>© <span id="year">2026</span> Sebastian Rivera</span>
 <span>AI Automation &amp; Agent Systems · No trackers, no cookies</span>
 <a href="mailto:Srivera.Automations@gmail.com">Srivera.Automations@gmail.com ↗</a>
 </footer>
-<script src="../script.js?v=20261102-business"></script>
+<script src="../script.js?v=20261102-presentation"></script>
 </body>
 </html>
