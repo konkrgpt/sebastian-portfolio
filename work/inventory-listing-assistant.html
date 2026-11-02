@@ -19,9 +19,10 @@
 <nav id="site-nav" class="site-nav" aria-label="Main navigation">
 <ul>
 <li><a href="../index.html">Overview</a></li>
-<li><a href="../work/multi-agent-research-system.html">Research System</a></li>
 <li><a href="../work/automotive-operations-automation.html">Claims Automation</a></li>
-<li><a href="../work/inventory-listing-assistant.html" aria-current="page">Inventory Assistant</a></li>
+<li><a href="../work/inventory-listing-assistant.html" aria-current="page">Inventory Demo</a></li>
+<li><a href="../work/ai-content-marketing-automation.html">Marketing Automation</a></li>
+<li><a href="../work/multi-agent-research-system.html">Market Research</a></li>
 <li><a href="../index.html#about">About</a></li>
 <li><a class="nav-contact" href="mailto:Srivera.Automations@gmail.com">Contact ↗</a></li>
 </ul>
@@ -30,11 +31,11 @@
 </header>
 <main id="main">
 <div class="wrap">
-<p class="crumbs"><a href="../index.html#work">Case studies</a> / 03</p>
+<p class="crumbs"><a href="../index.html#work">Case studies</a> / 02</p>
 <section class="case-hero">
-<p class="kicker">Case study 03 · Demonstration prototype</p>
+<p class="kicker">Case study 02 · Demonstration prototype</p>
 <h1>Inventory Intake &amp; Listing Assistant</h1>
-<p class="lead">A single-file, mobile-friendly prototype showing how a resale shop's rough intake notes could become clean, staff-reviewed product listings and a WooCommerce-style CSV export.</p>
+<p class="lead">A small demo for a fictional resale shop: staff start with rough item notes, review sample product listings, edit titles and prices, and export approved items to a spreadsheet. It demonstrates a proposed business tool, separate from the content-marketing project.</p>
 <div class="status-line"><span class="badge b-proto">Prototype</span> <span class="badge b-prop">Proposed</span></div>
 <div class="notice critical"><strong>Fictional demo.</strong> Invented shop, items and prices. Listings are pre-written example output; no AI model runs in this prototype. Live AI generation is proposed, not built.</div>
 <p style="margin-top:22px"><a class="button ghost" href="../demo/inventory-prototype.html">Open the prototype (fictional demo) ↗</a></p>
@@ -42,7 +43,7 @@
 </div>
 <div class="wrap case">
 <aside class="toc" aria-label="On this page"><p>ON THIS PAGE</p><ul>
-<li><a href="#problem">Problem</a></li><li><a href="#flow">The flow</a></li><li><a href="#screens">Screens</a></li><li><a href="#features">Feature status</a></li><li><a href="#proposed">Proposed live version</a></li></ul></aside>
+<li><a href="#problem">Problem</a></li><li><a href="#flow">The flow</a></li><li><a href="#screens">Demo walkthrough</a></li><li><a href="#features">What works</a></li><li><a href="#proposed">Proposed live version</a></li></ul></aside>
 <div class="case-body">
 <section id="problem"><h2>The problem</h2>
 <p>Resale staff write rough notes at intake. Turning those into consistent titles, categories, condition grades, descriptions and tags takes time, and some items (for example, branded goods) must never be listed before a person has authenticated them. The prototype explores a flow where staff stay in control of every listing.</p>
@@ -55,18 +56,18 @@
 </ol>
 <p>One item, a monogram tote, is intentionally flagged "authentication required": its brand is withheld and it has no price, so it cannot be exported until approved. Each suggested price is a fixed markup over an invented intake cost, rounded to $5, and labeled "Fictional example price, staff must verify". The markup is not a pricing method.</p>
 </section>
-<section id="screens"><h2>Screens</h2>
-<p>Captured from a local headless-browser render at a 390×844 phone viewport. That render logged no external requests and no errors.</p>
+<section id="screens"><h2>See how the demo works</h2>
+<p>These screenshots show the demo on a phone-sized screen. Follow the steps from incoming stock to staff review and export. The listings and prices are fictional examples.</p>
 <div class="shots">
 <figure><img src="../assets/img/inventory-01-intake.png" width="780" height="1688" loading="lazy" alt="Prototype intake screen of the fictional Harbor Lane Resale demo, listing fictional items with rough staff notes and a red FICTIONAL DEMO banner."><figcaption><strong>Intake screen.</strong> Prototype intake screen with fictional items and notes.</figcaption></figure>
-<figure><img src="../assets/img/inventory-02-generating.png" width="780" height="1688" loading="lazy" alt="Loading spinner screen from the prototype. It is a simulated delay; no generation happens."><figcaption><strong>Simulated delay.</strong> <strong>Simulated delay; no generation happens.</strong></figcaption></figure>
+<figure><img src="../assets/img/inventory-02-generating.png" width="780" height="1688" loading="lazy" alt="Loading spinner screen from the prototype. It is a simulated delay; no generation happens."><figcaption><strong>Example-loading animation.</strong> A simulated delay; no AI generation happens.</figcaption></figure>
 <figure><img src="../assets/img/inventory-03-before-after.png" width="780" height="1688" loading="lazy" alt="Before and after view: a rough note about a gold chain shown above a pre-written example listing labeled Example output, pre-written for demo, with a fictional example price."><figcaption><strong>Before → after.</strong> Pre-written example output (not AI-generated). Fictional example prices.</figcaption></figure>
 <figure><img src="../assets/img/inventory-authentication-review.png" width="780" height="1688" loading="lazy" alt="Pre-written example listing for a tote bag flagged authentication required, with the brand withheld and no price."><figcaption><strong>Flagged item.</strong> Pre-written example output: an item flagged for staff authentication.</figcaption></figure>
 <figure><img src="../assets/img/inventory-05-review.png" width="780" height="1688" loading="lazy" alt="Staff review screen with editable titles and fictional example prices and approve or skip toggles."><figcaption><strong>Staff review.</strong> Staff review screen (prototype). Fictional example prices.</figcaption></figure>
 <figure><img src="../assets/img/inventory-06-exported.png" width="780" height="1688" loading="lazy" alt="Export confirmation screen showing a client-side CSV export of the approved example items."><figcaption><strong>CSV export.</strong> Client-side CSV export of approved example items (prototype).</figcaption></figure>
 </div>
 </section>
-<section id="features"><h2>Feature status</h2>
+<section id="features"><h2>What works in the demo</h2>
 <div class="scroll-x"><table>
 <thead><tr><th>Feature</th><th>Status</th><th>Notes</th></tr></thead>
 <tbody>
@@ -93,7 +94,7 @@
 </ul>
 <p><strong>Data provenance:</strong> the shop, SKUs, notes, costs and prices are invented. Product images are original placeholder drawings stamped as placeholders. No real shop, customer, employer or person appears.</p>
 </section>
-<nav class="next" aria-label="Case study navigation"><a href="automotive-operations-automation.html">← Claims Automation</a><a href="../index.html#about">About &amp; contact →</a></nav>
+<nav class="next" aria-label="Case study navigation"><a href="automotive-operations-automation.html">← Claims Automation</a><a href="ai-content-marketing-automation.html">Next: Marketing Automation →</a></nav>
 </div>
 </div>
 </main>
