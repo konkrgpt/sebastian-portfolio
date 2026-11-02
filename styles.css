@@ -225,3 +225,10 @@ footer,footer a{color:#b2a995}
 .discovery{display:grid;grid-template-columns:1fr 1fr;gap:60px}.discovery p{color:var(--muted);font-size:16px}.discovery .button{margin-top:18px}.discovery .fine{font-size:12px;margin-top:18px}
 @media(max-width:1100px){.demo-layout{gap:36px;grid-template-columns:minmax(0,1fr) minmax(0,380px)}.business-invitation{align-items:flex-start;flex-direction:column}}
 @media(max-width:760px){.business-hero{padding:50px 0 35px}.service-examples,.demo-layout,.discovery{grid-template-columns:1fr}.demo-layout,.discovery{gap:36px}.demo-explanation{max-width:560px}.phone-demo{max-width:380px}.phone-frame{padding:10px 7px 8px;border-radius:32px}.phone-frame iframe{height:640px;border-radius:23px}.business-invitation{padding:24px}.business-invitation .button{white-space:normal}.service-examples{gap:16px}.service-examples article{padding:22px}.phone-hint{font-size:11px}}
+
+/* Contact stays on the page, with explicit email options. */
+.contact-section{display:grid;grid-template-columns:1fr 1.1fr;gap:60px;align-items:center;border-top:1px solid var(--line)}
+.contact-section p{color:var(--muted);max-width:460px}.contact-card{padding:30px;border:1px solid #5c4b2c;background:#10110ef5;border-radius:12px}
+.contact-address{display:block;overflow-wrap:anywhere;color:var(--gold);font-size:clamp(18px,2vw,25px);text-decoration:none;margin:18px 0 26px}.contact-address:hover{text-decoration:underline}
+.contact-actions{display:flex;align-items:center;flex-wrap:wrap;gap:18px}.copy-email{font:inherit;font-size:13px;border:1px solid #655539;border-radius:5px;background:transparent;color:var(--text);padding:10px 14px;cursor:pointer}.copy-email:hover{background:#29271f}.contact-status{min-height:36px;font-size:12px;margin:20px 0 0}
+@media(max-width:760px){.contact-section{grid-template-columns:1fr;gap:24px}.contact-card{padding:24px}.contact-actions{gap:18px}.contact-address{font-size:19px}}

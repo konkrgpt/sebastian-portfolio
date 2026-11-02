@@ -7,7 +7,7 @@
 <meta name="robots" content="index,follow">
 <title>Auto Body Claims Automation | Sebastian Rivera</title>
 <script>document.documentElement.className+=' js';</script>
-<link rel="stylesheet" href="../styles.css?v=20261102-business">
+<link rel="stylesheet" href="../styles.css?v=20261102-presentation">
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
@@ -24,7 +24,7 @@
 <li><a href="../work/ai-content-marketing-automation.html">Marketing Automation</a></li>
 <li><a href="../work/multi-agent-research-system.html">Market Research</a></li>
 <li><a href="../index.html#about">About</a></li>
-<li><a class="nav-contact" href="mailto:Srivera.Automations@gmail.com">Contact ↗</a></li>
+<li><a class="nav-contact" href="../index.html#contact">Contact</a></li>
 </ul>
 </nav>
 </div>
@@ -36,12 +36,12 @@
 <p class="kicker">Case study 01 · Paid work · Jul–Sep 2026</p>
 <h1>Auto Body Claims Automation</h1>
 <p class="lead">A connected set of n8n workflows for an auto body shop handling claims: identifying incoming documents, organizing claim folders, routing files, and checking records in Google Drive.</p>
-<div class="status-line"><span class="badge b-record">43 archived workflows</span><span class="badge b-impl">Paid project</span></div>
+<div class="status-line"><span class="badge b-record">43 n8n workflows</span><span class="badge b-impl">Paid project</span></div>
 </section>
 </div>
 <div class="wrap case">
 <aside class="toc" aria-label="On this page"><p>ON THIS PAGE</p><ul>
-<li><a href="#problem">Problem</a></li><li><a href="#outcome">Outcome</a></li><li><a href="#work-done">What was built</a></li><li><a href="#diagram">Workflow gallery</a></li><li><a href="#evidence">Source notes</a></li></ul></aside>
+<li><a href="#problem">Problem</a></li><li><a href="#outcome">Outcome</a></li><li><a href="#work-done">What was built</a></li><li><a href="#diagram">Workflow gallery</a></li></ul></aside>
 <div class="case-body">
 <section id="problem"><h2>The problem</h2>
 <p>An auto body shop handling claims needed incoming documents identified, sorted and filed into the correct claim folders. A claim could involve roughly 50–300 documents, based on Sebastian’s operational estimate. Sorting that volume manually was a major part of the time-consuming preparation work. Staff also needed a clearer view of the records already on file and the documents still missing. The workflows addressed intake, classification, routing, reconciliation and preparation for reviewing claims.</p>
@@ -55,7 +55,7 @@
 <section id="work-done"><h2>What I built</h2>
 <div class="scroll-x"><table>
 <thead><tr><th>Component</th><th>What it does</th></tr></thead><tbody>
-<tr><td>43 n8n workflows in the archive</td><td>Workflow definitions covering claims processing, supporting utilities and prototypes. The ZIP contains 44 exports; one is empty.</td></tr>
+<tr><td>43 n8n workflows</td><td>A connected collection of workflows for claims processing, document handling and day-to-day operational tasks.</td></tr>
 <tr><td>Document intake and identification</td><td>Reads incoming files, extracts information, and identifies the document type.</td></tr>
 <tr><td>Claim-folder organization</td><td>Routes documents into the appropriate Google Drive folders and records the filing steps.</td></tr>
 <tr><td>Call preparation</td><td>Brings claim information together so staff can prepare for a call with fewer manual lookups.</td></tr>
@@ -65,12 +65,8 @@
 <h3>My role</h3><p>I defined the workflow, designed the architecture, directed AI-assisted implementation, reviewed the output, and handled testing, troubleshooting and optimization.</p>
 </section>
 
-<section id="diagram"><h2>Inside the workflows</h2><p>Five selected workflows, recreated from the node positions and connections in the original n8n exports. Generic labels protect client information. Open an image to explore its full-size layout.</p><div class="workflow-gallery"><figure><a href="../assets/workflows/document-sorter.svg" target="_blank" rel="noopener"><img src="../assets/workflows/document-sorter.svg" width="2800" height="1400" loading="lazy" alt="Sanitized recreation of Document Sorting System: 43 processing nodes and 55 connections, with generic labels."></a><figcaption><strong>Document Sorting System.</strong> 43 processing nodes; sticky notes excluded. <a href="../assets/workflows/document-sorter.svg" target="_blank" rel="noopener">View full size ↗</a></figcaption></figure><figure><a href="../assets/workflows/call-intake.svg" target="_blank" rel="noopener"><img src="../assets/workflows/call-intake.svg" width="2800" height="1400" loading="lazy" alt="Sanitized recreation of Call Intake & AI Extraction: 21 processing nodes and 21 connections, with generic labels."></a><figcaption><strong>Call Intake & AI Extraction.</strong> 21 processing nodes; sticky notes excluded. <a href="../assets/workflows/call-intake.svg" target="_blank" rel="noopener">View full size ↗</a></figcaption></figure><figure><a href="../assets/workflows/filing-router.svg" target="_blank" rel="noopener"><img src="../assets/workflows/filing-router.svg" width="2800" height="1400" loading="lazy" alt="Sanitized recreation of Document Filing Router: 26 processing nodes and 31 connections, with generic labels."></a><figcaption><strong>Document Filing Router.</strong> 26 processing nodes; sticky notes excluded. <a href="../assets/workflows/filing-router.svg" target="_blank" rel="noopener">View full size ↗</a></figcaption></figure><figure><a href="../assets/workflows/ai-classification.svg" target="_blank" rel="noopener"><img src="../assets/workflows/ai-classification.svg" width="2800" height="1400" loading="lazy" alt="Sanitized recreation of AI Classification & Routing: 27 processing nodes and 33 connections, with generic labels."></a><figcaption><strong>AI Classification & Routing.</strong> 27 processing nodes; sticky notes excluded. <a href="../assets/workflows/ai-classification.svg" target="_blank" rel="noopener">View full size ↗</a></figcaption></figure><figure><a href="../assets/workflows/parts-listing.svg" target="_blank" rel="noopener"><img src="../assets/workflows/parts-listing.svg" width="2800" height="1400" loading="lazy" alt="Sanitized recreation of Parts Identification Prototype: 11 processing nodes and 10 connections, with generic labels."></a><figcaption><strong>Parts Identification Prototype.</strong> Prototype preserved in the archive. 11 processing nodes; sticky notes excluded. <a href="../assets/workflows/parts-listing.svg" target="_blank" rel="noopener">View full size ↗</a></figcaption></figure></div></section>
+<section id="diagram"><h2>Inside the workflows</h2><p>Five selected workflows, recreated from the node positions and connections in the original n8n exports. Generic labels protect client information. Open an image to explore its full-size layout.</p><div class="workflow-gallery"><figure><a href="../assets/workflows/document-sorter.svg" target="_blank" rel="noopener"><img src="../assets/workflows/document-sorter.svg" width="2800" height="1400" loading="lazy" alt="Sanitized recreation of Document Sorting System: 43 processing nodes and 55 connections, with generic labels."></a><figcaption><strong>Document Sorting System.</strong> 43 processing nodes; sticky notes excluded. <a href="../assets/workflows/document-sorter.svg" target="_blank" rel="noopener">View full size ↗</a></figcaption></figure><figure><a href="../assets/workflows/call-intake.svg" target="_blank" rel="noopener"><img src="../assets/workflows/call-intake.svg" width="2800" height="1400" loading="lazy" alt="Sanitized recreation of Call Intake & AI Extraction: 21 processing nodes and 21 connections, with generic labels."></a><figcaption><strong>Call Intake & AI Extraction.</strong> 21 processing nodes; sticky notes excluded. <a href="../assets/workflows/call-intake.svg" target="_blank" rel="noopener">View full size ↗</a></figcaption></figure><figure><a href="../assets/workflows/filing-router.svg" target="_blank" rel="noopener"><img src="../assets/workflows/filing-router.svg" width="2800" height="1400" loading="lazy" alt="Sanitized recreation of Document Filing Router: 26 processing nodes and 31 connections, with generic labels."></a><figcaption><strong>Document Filing Router.</strong> 26 processing nodes; sticky notes excluded. <a href="../assets/workflows/filing-router.svg" target="_blank" rel="noopener">View full size ↗</a></figcaption></figure><figure><a href="../assets/workflows/ai-classification.svg" target="_blank" rel="noopener"><img src="../assets/workflows/ai-classification.svg" width="2800" height="1400" loading="lazy" alt="Sanitized recreation of AI Classification & Routing: 27 processing nodes and 33 connections, with generic labels."></a><figcaption><strong>AI Classification & Routing.</strong> 27 processing nodes; sticky notes excluded. <a href="../assets/workflows/ai-classification.svg" target="_blank" rel="noopener">View full size ↗</a></figcaption></figure><figure><a href="../assets/workflows/parts-listing.svg" target="_blank" rel="noopener"><img src="../assets/workflows/parts-listing.svg" width="2800" height="1400" loading="lazy" alt="Sanitized recreation of Parts Identification Prototype: 11 processing nodes and 10 connections, with generic labels."></a><figcaption><strong>Parts Identification Prototype.</strong> 11 processing nodes; sticky notes excluded. <a href="../assets/workflows/parts-listing.svg" target="_blank" rel="noopener">View full size ↗</a></figcaption></figure></div></section>
 
-<section id="evidence"><h2>Source notes</h2>
-<p>The original ZIP contains <strong>44 JSON exports: 43 workflows with processing nodes and one empty export</strong>. The count includes supporting utilities and prototypes. The largest workflow shown here contains 43 nodes.</p>
-<p>The images preserve selected workflow layouts and connections while omitting private parameters, credentials and client records. They are sanitized recreations from the exports. The time savings above are my operational estimate.</p>
-</section>
 <nav class="next" aria-label="Case study navigation"><a href="../index.html#work">← All projects</a><a href="ai-content-marketing-automation.html">Next: Marketing Automation →</a></nav>
 </div>
 </div>
@@ -80,6 +76,6 @@
 <span>AI Automation &amp; Agent Systems · No trackers, no cookies</span>
 <a href="mailto:Srivera.Automations@gmail.com">Srivera.Automations@gmail.com ↗</a>
 </footer>
-<script src="../script.js?v=20261102-business"></script>
+<script src="../script.js?v=20261102-presentation"></script>
 </body>
 </html>
