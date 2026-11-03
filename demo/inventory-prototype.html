@@ -54,15 +54,16 @@ footer{font-size:11px;color:var(--mut);padding:4px 16px 16px;text-align:center}
 
 :root{color-scheme:dark;--ink:#f0eadc;--mut:#b4b0a6;--bg:#0c0e0d;--card:#171a17;--acc:#dec38a;--ok:#739a78;--warn:#d5ac68;--demo:#25271f}
 header{background:#111410;box-shadow:0 1px 0 #3b3d30}.demo{color:#e4cd9b;font-size:10px}.note{color:#c3bda9;background:#20231c}.steps button{background:#242820}.steps button.on{background:#dec38a;color:#191d17}.card{border:1px solid #34392e;box-shadow:0 8px 24px #0003}.ph{object-fit:cover;background:#20221f;border:1px solid #414337}.raw{background:#21251e;border:1px solid #414b37;color:#d7d8c8}.btn{color:#181c16}.btn.sec{background:#2c3226;color:#e3cd9e}.ai{background:#303526;color:#e0cc9c}.chip{background:#292e24;color:#c7cbbd}.g{background:#253b2d;color:#b4d9bb}.d{color:#d0d1c7}.price{background:#2c2b20}.flag{background:#382920;color:#edc39a}.rv textarea,.rv input[type=number]{background:#11150f;border-color:#49513f;color:#f0eadc}.tg{border-color:#34392e}.bar{background:#151912;border-top:1px solid #414737}.toast{background:#e1c78f;color:#171c13}.steps button span{font-size:12px;letter-spacing:1px}.spin i{border-color:#3e4436;border-top-color:var(--acc)}.row>div{min-width:0}.raw{overflow-wrap:anywhere}.ph{width:96px;height:96px}
+.steps{gap:8px;padding:4px 12px 12px}.steps button{min-height:58px;padding:12px 7px;border:1px solid #525743;border-radius:13px;background:linear-gradient(180deg,#30372a,#23281e);color:#e7e7d9;font-family:inherit;font-size:14px;font-weight:750;line-height:1.2;letter-spacing:.01em;box-shadow:0 3px 0 #080b07, inset 0 1px 0 #ffffff0c;cursor:pointer;transition:background .15s,transform .15s}.steps button.on{background:linear-gradient(180deg,#e7ce98,#d4b576);border-color:#ecd6aa;color:#191d14;box-shadow:0 3px 0 #71603a,inset 0 1px 0 #fff5}.steps button:hover{border-color:#dec38a}.steps button:active{transform:translateY(2px)}.steps button:focus-visible{outline:2px solid #f0dcae;outline-offset:3px}
 </style></head><body>
 <header>
  <div class="demo">FICTIONAL DEMO · invented shop, items &amp; prices</div>
  <div class="hd"><small>Inventory Listing Assistant</small><b>Harbor Lane Resale (FICTIONAL DEMO)</b></div>
  <p class="note">Interactive demo with fictional items and pre-written listings. Edit, review, and export in your browser. No live AI generation or store publishing.</p>
  <nav class="steps">
-  <button data-s="1"><span>01</span>1 · Intake</button>
-  <button data-s="2"><span></span>2 · Listings</button>
-  <button data-s="3"><span>03</span>3 · Review &amp; Export</button>
+  <button type="button" data-s="1">Intake</button>
+  <button type="button" data-s="2">Listings</button>
+  <button type="button" data-s="3">Review &amp; Export</button>
  </nav>
 </header>
 <main>
